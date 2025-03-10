@@ -1,0 +1,6 @@
+@SS.CodingChallenge.Api_HostAddress = http://localhost:5157
+
+GET {{SS.CodingChallenge.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

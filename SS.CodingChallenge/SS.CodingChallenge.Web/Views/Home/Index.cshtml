@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Search</title>
+</head>
+<body>
+    <h1>Candidate Search</h1>
+    <input type="text" id="zipCode" placeholder="Enter Zip Code">
+    <button onclick="getCandidates()">Search</button>
+
+    <ul id="candidateList"></ul>
+
+    <script>
+        async function getCandidates() {
+            const zipCode = document.getElementById('zipCode').value;
+            const response = await fetch(`/api/v1/Candidate?zipCode=${zipCode}`);
+            const candidates = await response.json();
+            const list = document.getElementById('candidateList');
+            list.innerHTML = '';
+            candidates.forEach(candidate => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${candidate.UserNum} (${candidate.OwnerFirstName})`;
+                list.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
